@@ -1,0 +1,30 @@
+﻿
+
+<div class>
+    @if (_smallCardVision)
+    {
+        <SmallCard DishModel="DishModel" ChangeCard="ChangeVisability"/>
+    }
+    @if (SetBigCardVision())
+    {
+        <BigCard DishModel="DishModel" OnClose="ChangeVisability" TakeOrder="Order" />
+    }
+</div>
+
+
+
+@code {
+    [Parameter] public DishModel DishModel { get; set; }
+
+    [Parameter] public EventCallback<DishModel> Order { get; set; }
+
+    private bool _smallCardVision = true;
+
+    private bool SetBigCardVision() => !_smallCardVision;
+
+    private void ChangeVisability()
+    {
+        _smallCardVision = !_smallCardVision;
+    }
+
+}

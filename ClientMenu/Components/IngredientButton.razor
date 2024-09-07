@@ -1,0 +1,13 @@
+﻿
+<li>
+    <button class="btn-outline-light" 
+        @onclick="(async()=>await AddExtra.InvokeAsync(Ingredient))">
+        <h5>@Ingredient.Name </h5>
+    </button>
+</li>
+
+@code {
+    [Parameter] public IngredientDTO Ingredient { get; set; }
+
+    [Parameter] public EventCallback<IngredientDTO> AddExtra { get; set; }
+}

@@ -1,0 +1,91 @@
+﻿<div>
+    <div class="card cusromCard">
+        <div class="card-header ">
+           <span class="text-end">
+                <button @onclick="OnClose" class="btn-close">&times;</button>
+           </span>
+           <h4>@DishModel.Name</h4>
+        </div>
+        <div class="card-body">
+            <img src="@_imageData" class="customImage"/>
+            <h4>@Math.Round(DishModel.Price,2)</h4>
+            <h4>@DishModel.TimeToCook</h4>
+            @if(_extras.Count>0)
+            {
+                <ul>
+                    @foreach(var item in _extras)
+                    {
+                        <IngredientButton Ingredient="item" AddExtra="AddIngredient" />
+                    }
+                </ul>
+            }
+        </div>
+        <div class="card-footer">
+            <button @onclick=@(()=>TakeOrder.InvokeAsync(DishModel)) class="btn-outline-primary">Order</button>
+            <button @onclick="OnClose" class="btn-outline-danger" >Close</button>
+            @if (DishModel.ExtraIngredients.Count > 0)
+            {
+                <button @onclick="Onclear" class="btn-outline-success">Clear</button>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public DishModel DishModel { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    [Parameter] public EventCallback<DishModel> TakeOrder { get; set; }
+
+    private string _imageData = String.Empty;
+
+    private List<IngredientDTO> _extras = new();
+
+    private string _tempName = String.Empty;
+
+    private double _tempPrice;
+
+   
+
+
+    private void AddIngredient(IngredientDTO ingredient)
+    {
+        _extras.Remove(ingredient);
+        DishModel.ExtraIngredients.Add(ingredient);
+        DishModel.ExtraIngredients.Distinct();
+        DishModel.AppendName(ingredient.Name);
+        DishModel.Appendprice(ingredient.Price);
+        InvokeAsync(StateHasChanged);
+    }
+    private void Onclear()
+    {
+        if (DishModel.ExtraIngredients.Count > 0)
+        {
+            _extras.AddRange(DishModel.ExtraIngredients);
+            DishModel.ExtraIngredients.Clear();
+            
+            DishModel.Name = _tempName;
+            DishModel.Price = _tempPrice;
+
+        }    
+
+    }
+
+    protected override void OnParametersSet()
+    {
+        _imageData = $"data:image/jpeg;base64,{DishModel.Image}";
+        
+    }
+    protected override void OnInitialized()
+    {
+        if(DishModel.ExtraIngredients is not null)
+        {
+            _extras = DishModel.ExtraIngredients;
+            DishModel.ExtraIngredients = new();
+            
+            _tempName = DishModel.Name;
+            _tempPrice = DishModel.Price;
+        }
+    }
+}

@@ -1,0 +1,91 @@
+﻿@inject DishReceiver _receiver
+@page "/menu/{Table}"
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" @bind-value="@request.Search" @bind-value:event="onclick"
+               placeholder="Search...." class="form-control" />
+    </div>
+    <div>
+        <button @onclick="ShowBasic" class="btn-outline-info" >Show basic</button>
+    </div>
+     <div>
+        <button @onclick="ShowSalad" class="btn-outline-info" >Show salad</button>
+    </div>
+     <div>
+        <button @onclick="ShowDessert" class="btn-outline-info" >Show dessert</button>
+    </div>
+     <div>
+        <button @onclick="ShowDrink" class="btn-outline-info" >Show drink</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <OrderCard Order="_orderModel" DTO="_dto" OnClear="OnClear"/>
+    </div>
+    <div class="row">
+        @foreach(var item in _menu)
+        {
+            <DishComponent DishModel="item" Order="OnOrder"  />
+        }
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public int Table { get; set; }
+
+    private string _search = String.Empty;
+
+    private DishRequest request { get; set; } = new();
+
+    private OrderModel _orderModel = new();
+
+    private List<DishModel> _menu;
+
+    private DishRequest? _request;
+
+    private OrderDto _dto = new();
+
+    protected override void OnInitialized()
+    {
+        _orderModel.TableNumber = Table;
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        _menu = await _receiver.GetRequestDishes(_request);
+    }
+    private int AddCount(int id) => _dto.GetDish(id).AddCout();
+
+
+    private void OnClear()
+    {
+        _orderModel.ListOrder.Clear();
+        _dto.DishDtos.Clear();
+    }
+    private void OnDelete(DishModel model)
+    {
+        _orderModel.ListOrder.Remove(model);
+        _dto.DishDtos.Remove(_dto.DishDtos.FirstOrDefault(x => x.Id == model.Id));
+
+    }
+    private void OnOrder(DishModel dish)
+    {
+        if (_dto.DishDtos.Any(x => x.Id.Equals(dish.Id)))
+        {
+            AddCount(dish.Id);
+        }
+        else
+        {
+            _orderModel.ListOrder.Add(dish);
+        }
+
+    }
+    private void ShowBasic() => request.Category = Category.Basic;
+
+    private void ShowSalad() => request.Category = Category.Salad;
+
+    private void ShowDessert() => request.Category = Category.Dessert;
+
+    private void ShowDrink() => request.Category = Category.Drink;
+}     

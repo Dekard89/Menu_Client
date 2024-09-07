@@ -1,0 +1,26 @@
+﻿
+
+<div>
+    <div class="card cusromCard">
+        <div class="card-body">
+            <button @onclick=@ChangeCard>
+                <img src="@_imageData" class="customImage zoom" />
+            </button>
+            <h4>@DishModel.Name</h4>
+            <h4>@Math.Round(DishModel.Price,2)</h4>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public DishModel DishModel {get;set;}
+    [Parameter] public EventCallback ChangeCard { get; set; }
+
+    private string _imageData = String.Empty;
+
+    protected override void OnParametersSet()
+    {
+        _imageData = $"data: image/jpeg;base64,{DishModel.Image}";
+    }
+}

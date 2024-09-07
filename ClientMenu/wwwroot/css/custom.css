@@ -1,0 +1,35 @@
+﻿body {
+
+}
+.cusromCard {
+    border: groove 2px;
+    border-radius: 5%;
+    box-shadow: 10px 5px 5px black;
+    background-color: transparent;
+}
+
+.zoom {
+    transition: transform 0.5s !important;
+}
+
+.zoom:hover {
+        transform: scale(1.2) !important;
+}
+
+
+
+.bigImage {
+    height: 200px;
+    width: 250px;
+    border-radius: 5%;
+}
+
+.card {
+    border: groove 2px;
+    box-shadow: 10px 5px 5px black;
+}
+.customImage{
+    height:150px;
+    width:200px;
+    border-radius:5%;
+}

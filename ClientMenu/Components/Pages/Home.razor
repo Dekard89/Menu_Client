@@ -1,0 +1,32 @@
+﻿@using System.ComponentModel.DataAnnotations
+@inject NavigationManager _navManager;
+
+@page "/"
+<div class="row">
+    <h2 class="text-center">Choose table number</h2>
+    @for(int i=0; i<12; i++)
+    {
+        <div class="col-1">
+            <button @onclick="()=>_tableNumber=i" class="btn-outline-success">@i</button>
+        </div>
+    }
+    @if (_tableNumber > 0)
+    {
+        <div class="text-center">
+            <button class="btn-outline-primary">Confirm @_tableNumber</button>
+        </div>
+    }
+</div>
+
+
+  
+
+@code{
+
+    private int _tableNumber;
+
+    private void OnConfirm()
+    {
+        _navManager.NavigateTo($"menu/{_tableNumber}");
+    }
+}

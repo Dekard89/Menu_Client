@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\obj\\Debug\\net8.0-ios\\iossimulator-x64\\scopedcss\\bundle\\ClientMenu.styles.css",
+      "PackagePath": "staticwebassets\\ClientMenu.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\wwwroot\\css\\custom.css",
+      "PackagePath": "staticwebassets\\css\\custom.css"
+    },
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\dmitr\\source\\repos\\ClientMenu\\ClientMenu\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.ClientMenu.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.build.ClientMenu.props",
+      "PackagePath": "build\\ClientMenu.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.buildMultiTargeting.ClientMenu.props",
+      "PackagePath": "buildMultiTargeting\\ClientMenu.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.buildTransitive.ClientMenu.props",
+      "PackagePath": "buildTransitive\\ClientMenu.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

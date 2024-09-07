@@ -1,0 +1,40 @@
+﻿@using ClientMenu.DTO
+<div>
+    <div class="card cusromCard">
+        <div class="card-header">
+            <h3>Table - @Order.TableNumber</h3>
+        </div>
+        <div class="card-body">
+            @foreach(var item in Order.ListOrder)
+            {
+                <div class="row">
+                    <SmallCard DishModel="item"/>
+                    <span>
+                       X @DTO.DishDtos.Where(x=>x.Id.Equals(item.Id));
+                    </span>
+                    <span>
+                        <button @onclick="(()=>OnDelete.InvokeAsync(item))" class="btn-outline-danger">Drop</button>
+                    </span>
+                </div>
+            }
+        </div>
+        <div class="card-body">
+            <button @onclick="(()=>OnOrder.InvokeAsync(Order))">Make an order</button>
+            <button @onclick="OnClear">Clear</button>)
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public OrderModel Order { get; set; }
+
+    [Parameter] public EventCallback<OrderModel> OnOrder { get; set; }
+
+    [Parameter] public EventCallback OnClear { get; set; }
+
+    [Parameter] public EventCallback<DishModel> OnDelete { get; set; }
+
+    [Parameter] public OrderDto DTO { get; set; }
+
+    
+}
